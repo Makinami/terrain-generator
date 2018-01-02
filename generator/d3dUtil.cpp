@@ -92,8 +92,8 @@ Microsoft::WRL::ComPtr<ID3DBlob> d3dUtill::CompileShader(const std::wstring& fil
 		{
 			OutputDebugStringA((char*)errors->GetBufferPointer());
 
-			auto choice = MessageBox(nullptr, std::wstring((wchar_t*)errors->GetBufferPointer(), (wchar_t*)(errors->GetBufferPointer()) + errors->GetBufferSize()).c_str(), L"Shader compilation failed", MB_RETRYCANCEL);
-			if (auto hr = IDRETRY)
+			auto choice = MessageBoxA(nullptr, std::string((char*)errors->GetBufferPointer(), (char*)(errors->GetBufferPointer()) + errors->GetBufferSize()).c_str(), "Shader compilation failed", MB_RETRYCANCEL);
+			if (choice == IDRETRY)
 			{
 				std::wstring relative = L"..\\generator\\";
 #ifdef _WIN64
