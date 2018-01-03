@@ -42,14 +42,14 @@ inline std::wstring AnsiToWstring(const std::string_view str)
 	return wstr;
 }
 
-class d3dUtill
+class d3dUtil
 {
 public:
 	static bool IsKeyDown(int vkeyCode);
 
 	static std::string ToString(HRESULT hr);
 
-	static UINT CalcConstantBufferByteSize(UINT byteSize)
+	static constexpr UINT CalcConstantBufferByteSize(const UINT byteSize)
 	{
 		// Constant buffers must be a multiple of the minimum hardware
 		// allocation size (usually 256 bytes). So round up to nearest

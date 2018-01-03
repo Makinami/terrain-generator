@@ -21,7 +21,7 @@ std::wstring DxException::ToString() const
 	return FunctionName + L" failed in " + Filename + L"; line " + std::to_wstring(LineNumber) + L"; error: " + msg;
 }
 
-Microsoft::WRL::ComPtr<ID3D12Resource> d3dUtill::CreateDefaultBuffer(
+Microsoft::WRL::ComPtr<ID3D12Resource> d3dUtil::CreateDefaultBuffer(
 	ID3D12Device * device,
 	ID3D12GraphicsCommandList * cmdList,
 	const void * initData,
@@ -71,7 +71,7 @@ Microsoft::WRL::ComPtr<ID3D12Resource> d3dUtill::CreateDefaultBuffer(
 	return defaultBuffer;
 }
 
-Microsoft::WRL::ComPtr<ID3DBlob> d3dUtill::CompileShader(const std::wstring& filename, const D3D_SHADER_MACRO * defines, const std::string& entrypoint, const std::string& target)
+Microsoft::WRL::ComPtr<ID3DBlob> d3dUtil::CompileShader(const std::wstring& filename, const D3D_SHADER_MACRO * defines, const std::string& entrypoint, const std::string& target)
 {
 	UINT compileFlags = 0;
 #if defined(DEBUG) || defined(_DEBUG)
