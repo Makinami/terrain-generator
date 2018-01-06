@@ -77,9 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="shaders\LightingUtil.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="shaders\color.hlsl">
+    <FxCompile Include="shaders\Default.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
