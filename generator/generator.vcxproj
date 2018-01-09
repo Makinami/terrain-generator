@@ -84,10 +84,11 @@
       <ObjectFileOutput>$(OutDir)%(RelativeDir)%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <PreBuildEvent>
-      <Command>xcopy "$(ProjectDir)shaders\*.*" "$(TargetDir)shaders\" /Y</Command>
+      <Command>xcopy "$(ProjectDir)shaders\*" "$(TargetDir)shaders\" /Y /E
+xcopy "$(ProjectDir)Textures\*" "$(TargetDir)Textures\" /Y /E</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Copy shader files</Message>
+      <Message>Copy shader and textures files</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -103,10 +104,11 @@
       <ObjectFileOutput>$(OutDir)%(RelativeDir)%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <PreBuildEvent>
-      <Command>xcopy "$(ProjectDir)shaders\*.*" "$(TargetDir)shaders\" /Y</Command>
+      <Command>xcopy "$(ProjectDir)shaders\*" "$(TargetDir)shaders\" /Y /E
+xcopy "$(ProjectDir)Textures\*" "$(TargetDir)Textures\" /Y /E</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Copy shader files</Message>
+      <Message>Copy shader and textures files</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,10 +130,11 @@
       <ObjectFileOutput>$(OutDir)%(RelativeDir)%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <PreBuildEvent>
-      <Command>xcopy "$(ProjectDir)shaders\*.*" "$(TargetDir)shaders\" /Y</Command>
+      <Command>xcopy "$(ProjectDir)shaders\*" "$(TargetDir)shaders\" /Y /E
+xcopy "$(ProjectDir)Textures\*" "$(TargetDir)Textures\" /Y /E</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Copy shader files</Message>
+      <Message>Copy shader and textures files</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -153,15 +156,17 @@
       <ObjectFileOutput>$(OutDir)%(RelativeDir)%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <PreBuildEvent>
-      <Command>xcopy "$(ProjectDir)shaders\*.*" "$(TargetDir)shaders\" /Y</Command>
+      <Command>xcopy "$(ProjectDir)shaders\*" "$(TargetDir)shaders\" /Y /E
+xcopy "$(ProjectDir)Textures\*" "$(TargetDir)Textures\" /Y /E</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Copy shader files</Message>
+      <Message>Copy shader and textures files</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="d3dApp.cpp" />
     <ClCompile Include="d3dUtil.cpp" />
+    <ClCompile Include="DDSTextureLoader.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="GeometryGenerator.cpp" />
     <ClCompile Include="MathHelper.cpp" />
@@ -173,6 +178,7 @@
     <ClInclude Include="d3dApp.h" />
     <ClInclude Include="d3dUtil.h" />
     <ClInclude Include="d3dx12.h" />
+    <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="FrameResource.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="GeometryGenerator.h" />
@@ -193,11 +199,14 @@
     <None Include="shaders\LightingUtil.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\directxtk12_desktop_2015.2017.12.13.1\build\native\directxtk12_desktop_2015.targets" Condition="Exists('..\packages\directxtk12_desktop_2015.2017.12.13.1\build\native\directxtk12_desktop_2015.targets')" />
+  </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\VisualCppTools.Community.Daily.VS2017Layout.14.13.26020-Pre\build\native\VisualCppTools.Community.Daily.VS2017Layout.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\VisualCppTools.Community.Daily.VS2017Layout.14.13.26020-Pre\build\native\VisualCppTools.Community.Daily.VS2017Layout.props'))" />
+    <Error Condition="!Exists('..\packages\directxtk12_desktop_2015.2017.12.13.1\build\native\directxtk12_desktop_2015.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk12_desktop_2015.2017.12.13.1\build\native\directxtk12_desktop_2015.targets'))" />
   </Target>
 </Project>
