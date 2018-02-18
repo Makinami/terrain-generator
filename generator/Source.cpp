@@ -255,7 +255,7 @@ void TexWavesApp::Draw(const GameTimer& gt)
 
 	// A command list can be reset after it has been added to the command queue via ExecuteCommandLists.
 	// Reusing the command list reuses memory.
-	ThrowIfFailed(mCommandList->Reset(mDirectCmdListAlloc.Get(), mPSOs["opaque"].Get()));
+	ThrowIfFailed(mCommandList->Reset(cmdListAlloc.Get(), mPSOs["opaque"].Get()));
 
 	mCommandList->RSSetViewports(1, &mScreenViewport);
 	mCommandList->RSSetScissorRects(1, &mScissorRect);
