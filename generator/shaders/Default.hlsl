@@ -16,6 +16,8 @@
 
 Texture2D gDiffuseMap : register(t0);
 
+Texture2D<float> gHeightMap : register(t0);
+
 SamplerState gsamPointWrap        : register(s0);
 SamplerState gsamPointClamp       : register(s1);
 SamplerState gsamLinearWrap       : register(s2);
@@ -84,8 +86,11 @@ VertexOut VS(VertexIn vin)
 {
 	VertexOut vout;
 
+	float3 pos = vin.PosL;
+	pos.y = 10*gHeightMap.SampleLevel(gsamLinearClamp, vin.TexC, 0);
+
 	// Transform to world space.
-	float4 posW = mul(float4(vin.PosL, 1.0f), gWorld);
+	float4 posW = mul(float4(pos, 1.0f), gWorld);
 	vout.PosW = posW.xyz;
 
 	// Assumes nonuniform scaling; otherwise, need to use inverse-transpose of world matrix.
